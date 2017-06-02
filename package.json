@@ -1,0 +1,22 @@
+{
+  "name": "lumm-be",
+  "version": "1.0.0",
+  "description": "server side for lumm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Panfen/lumm-be.git"
+  },
+  "keywords": [
+    "lumm"
+  ],
+  "author": "Panfen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Panfen/lumm-be/issues"
+  },
+  "homepage": "https://github.com/Panfen/lumm-be#readme"
+}
