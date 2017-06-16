@@ -4,6 +4,7 @@
   "description": "server side for lumm",
   "main": "index.js",
   "scripts": {
+    "start":"node --harmony app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Panfen/lumm-be/issues"
   },
-  "homepage": "https://github.com/Panfen/lumm-be#readme"
+  "homepage": "https://github.com/Panfen/lumm-be#readme",
+  "dependencies": {
+    "koa": "^2.2.0"
+  }
 }

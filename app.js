@@ -1,7 +1,10 @@
-var http = require('http');
+var Koa = require('koa');
+var app = new Koa();
+var config = require('./config/default.js');
 
-http.createServer(function(req, res){
-	res.writeHead(200, {'Content-type' : 'text/html'});
-  res.write('<h1>Node.js</h1>');
-  res.end('<p>Hello World</p>');
-}).listen(3000);
+app.use(ctx => {
+  ctx.body = 'Hello World';
+});
+
+app.listen(config.port);
+console.log('Listen at ' + config.port + ' ...');
