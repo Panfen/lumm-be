@@ -4,7 +4,7 @@
   "description": "server side for lumm",
   "main": "index.js",
   "scripts": {
-    "start":"node --harmony app",
+    "start": "node --harmony app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +22,12 @@
   "homepage": "https://github.com/Panfen/lumm-be#readme",
   "dependencies": {
     "koa": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-latest": "^6.24.1"
   }
 }

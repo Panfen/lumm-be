@@ -1,10 +1,15 @@
-var Koa = require('koa');
-var app = new Koa();
-var config = require('./config/default.js');
+const Koa = require('koa');
 
-app.use(ctx => {
-  ctx.body = 'Hello World';
+// 创建一个Koa对象表示web app本身:
+const app = new Koa();
+
+// 对于任何请求，app将调用该异步函数处理请求：
+app.use(async (ctx, next) => {
+    await next();
+    ctx.response.type = 'text/html';
+    ctx.response.body = '<h1>Hello, koa2!</h1>';
 });
 
-app.listen(config.port);
-console.log('Listen at ' + config.port + ' ...');
+// 在端口3000监听:
+app.listen(3000);
+console.log('app started at port 3000...');
