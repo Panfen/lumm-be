@@ -1,8 +1,8 @@
 const Koa = require('koa');
 const app = new Koa();
-const static = require('koa-static');
 
-app.use(static(__dirname + '/static/html',{extensions:['html']}));
+
+//app.use(static(__dirname + '/static/html',{extensions:['html']}));
 
 // 对于任何请求，app将调用该异步函数处理请求：
 app.use(async (ctx, next) => {
