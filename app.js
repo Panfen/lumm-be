@@ -1,15 +1,33 @@
+const path = require('path');
 const Koa = require('koa');
+const convert = require('koa-convert');
+//const views = require('koa-views');
+const koaStatic = require('koa-static');
+const bodyParser = require('koa-bodyparser');
+
+const config = require('./config');
+const routes = require('./routes/routes');
+
 const app = new Koa();
 
 
-//app.use(static(__dirname + '/static/html',{extensions:['html']}));
+//配置ctx.body解析中间件
+app.use(bodyParser());
 
-// 对于任何请求，app将调用该异步函数处理请求：
-app.use(async (ctx, next) => {
-   console.log('hello world')
-});
+//配置静态资源加载中间件
+app.use(convert(koaStatic(
+	path.join(__dirname, './static')
+)));
 
+//配置服务端模板渲染引擎中间件
+/*
+app.use(views(path.join(__dirname, './views')), {
+	extension: 'ejs'
+})
+*/
 
-// 在端口3000监听:
-app.listen(3000);
-console.log('app started at port 3000...');
+//配置路由中间件
+app.use(routes.routes()).use(routes.allowedMethods());
+
+app.listen(config.port);
+console.log('app started at port '+ config.port +'...');
