@@ -1,5 +1,6 @@
 const path = require('path');
 const Koa = require('koa');
+const render = require('koa-ejs');
 const convert = require('koa-convert');
 const views = require('koa-views');
 const koaStatic = require('koa-static');
@@ -20,9 +21,13 @@ app.use(convert(koaStatic(
 )));
 
 //配置服务端模板渲染引擎中间件
-app.use(views(path.join(__dirname, './views')), {
-	extension: 'ejs'
-})
+render(app, {
+  root: path.join(__dirname, 'views'),
+  layout: 'template',
+  viewExt: 'html',
+  cache: false,
+  debug: true
+});
 
 //配置路由中间件
 app.use(routes.routes()).use(routes.allowedMethods());
