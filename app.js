@@ -26,7 +26,7 @@ render(app, {
   layout: 'template',
   viewExt: 'html',
   cache: false,
-  debug: true
+  debug: false
 });
 
 //配置路由中间件

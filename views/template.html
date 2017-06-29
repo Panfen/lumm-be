@@ -2,8 +2,46 @@
 <html>
 <head>
 	<title>koa ejs</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
 </head>
 <body>
+	<!--导航条-->
+	<div class="navbar navbar-default" role="navigation">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="navbar-left">
+				<div class="navbar-header">
+					<a href="##" class="navbar-brand">撸猫猫</a>
+				</div>
+			  <ul class="nav navbar-nav">
+				 	<li><a href="##">喵语</a></li>
+			    <li class="dropdown">
+			      <a href="##" data-toggle="dropdown" class="dropdown-toggle">喵天地<span class="caret"></span></a>
+			      <ul class="dropdown-menu">
+			      	<li><a href="##">喵小店</a></li>
+			      	<li><a href="##">喵广场</a></li>
+			      	<li class="disabled"><a href="##">喵圈子</a></li>
+			      </ul>
+			   	</li>
+			    <li><a href="##">喵图</a></li>
+			    <li><a href="##">关于本喵</a></li>
+			 	</ul>
+		 	</div>
+		  <form action="##" class="navbar-form navbar-right" rol="search">
+		   	<div class="form-group">
+		   		<input type="text" class="form-control" placeholder="请输入关键词" />
+		   	</div>
+	     	<button type="submit" class="btn btn-default">搜索</button>
+	   	</form>
+		</div>
+	</div>
+
   <%- body %>
+
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
