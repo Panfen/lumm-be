@@ -4,6 +4,7 @@
   "description": "lumm back end",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/Panfen/lumm-be/issues"
   },
-  "homepage": "https://github.com/Panfen/lumm-be#readme"
+  "homepage": "https://github.com/Panfen/lumm-be#readme",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1"
+  }
 }
