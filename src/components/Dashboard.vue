@@ -1,10 +1,19 @@
 <template>
 	<el-row class="content">
+
+		<!-- S content-top -->
 		<el-row class="content-top">
-			<el-col >
-				<span>欢迎使用撸猫猫后台管理系统</span>
+			<el-col :span="6" class="top-left">
+				<img src="../assets/logo_black.png" width="60" height="60">
+				<span>撸猫猫后台管理系统</span>
+			</el-col>
+			<el-col :span="6" :offset="12">
+				hah
 			</el-col>
 		</el-row>
+		<!-- E content-top -->
+
+		<!-- S content-body -->
 		<el-row class="content-body">
 			<el-col :span="3" class="menu">
 				<el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
@@ -27,6 +36,8 @@
 				<div class="grid-content bg-purple-light">右边</div>
 			</el-col>
 		</el-row>
+		<!-- E content-body -->
+
 	</el-row>
 </template>
 
@@ -43,6 +54,9 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
       }
     }
 	}
@@ -58,8 +72,22 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+		height: 80px;
 		line-height: 80px;
-		background: #cecece;
+		background: #FCFCFC;
+	}
+	.top-left{
+		text-align: left;
+	}
+	.top-left img{
+		margin: 10px 20px;
+		float: left;
+	}
+	.top-left span{
+		display: inline-block;
+		line-height: 80px;
+		float: left;
+		font-weight: bold;
 	}
 	.content-body{
 		height: 100%;
