@@ -16,7 +16,7 @@
 		<!-- S content-body -->
 		<el-row class="content-body">
 			<el-col :span="3" class="menu">
-				<el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" unique-opened>
+				<el-menu default-active="1" class="el-menu-vertical-demo" @select="handleSelect" theme="dark"  unique-opened>
 					<el-menu-item index="1"><i class="el-icon-star-off"></i>主页</el-menu-item>
 		      <el-submenu index="2">
 		      	<template slot="title"><i class="el-icon-setting"></i>管理</template>
@@ -56,26 +56,25 @@
 	export default {
 		data(){
 			return {
-				//
+				//this.$router.push('/index')
 			}
 		},
 		methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
       handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      	if(keyPath[0] == '1'){
+      		this.$router.push('/index');
+      	}else if(keyPath[1] == '2-1'){
+      		this.$router.push('/user');
+      	}else if(keyPath[1] == '2-2'){
+      		this.$router.push('/article');
+      	}
       }
     }
 	}
 </script>
 
-<style>
+<style scoped>
 	.content{
-		height: 100%;
 		position: relative;
 	}
 	.content-top{
@@ -83,10 +82,11 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 10;
+		z-index: 2017;
 		height: 80px;
 		line-height: 80px;
 		background: #FCFCFC;
+		border-bottom: 1px solid #eee;
 	}
 	.top-left{
 		text-align: left;
@@ -117,7 +117,6 @@
 	}
 	.board{
 		height: 100%;
-		background: #F4F3F8;
 	}
 	.el-submenu .el-menu-item {
 		min-width: 0;
