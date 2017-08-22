@@ -26,7 +26,7 @@
 		},
 		methods:{
 			loginAct(){
-				this.$router.push('/dashboard')
+				this.$router.push('/index')
 			}
 		}
 	}

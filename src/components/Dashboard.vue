@@ -8,7 +8,7 @@
 				<span>撸猫猫后台管理系统</span>
 			</el-col>
 			<el-col :span="6" :offset="12">
-				hah
+				千山慕雪
 			</el-col>
 		</el-row>
 		<!-- E content-top -->
@@ -16,25 +16,36 @@
 		<!-- S content-body -->
 		<el-row class="content-body">
 			<el-col :span="3" class="menu">
-				<el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
-		      <el-submenu index="1">
-		        <template slot="title">导航一</template>
-	          <el-menu-item index="1-1">选项1</el-menu-item>
-	          <el-menu-item index="1-2">选项2</el-menu-item>
-	          <el-menu-item index="1-3">选项3</el-menu-item>
-		      </el-submenu>
+				<el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" unique-opened>
+					<el-menu-item index="1"><i class="el-icon-star-off"></i>主页</el-menu-item>
 		      <el-submenu index="2">
-		      	<template slot="title">导航二</template>
-	          <el-menu-item index="2-1">选项1</el-menu-item>
-	          <el-menu-item index="2-2">选项2</el-menu-item>
-	          <el-menu-item index="2-3">选项3</el-menu-item>
+		      	<template slot="title"><i class="el-icon-setting"></i>管理</template>
+		      	<el-menu-item index="2-1">用户管理</el-menu-item>
+	          <el-menu-item index="2-2">文章管理</el-menu-item>
+	          <el-menu-item index="2-3">帖子管理</el-menu-item>
+	          <el-menu-item index="2-4">店铺管理</el-menu-item>
+	          <el-menu-item index="2-5">图片管理</el-menu-item>
 		      </el-submenu>
-		      <el-menu-item index="3">导航三</el-menu-item>
+		      <el-submenu index="3">
+		      	<template slot="title"><i class="el-icon-information"></i>分析</template>
+	          <el-menu-item index="3-1">菜单分析</el-menu-item>
+	          <el-menu-item index="3-2">用户分析</el-menu-item>
+	          <el-menu-item index="3-3">素材分析</el-menu-item>
+	          <el-menu-item index="3-4">图片管理</el-menu-item>
+	        </el-submenu>
+	        <el-submenu index="4">
+		        <template slot="title"><i class="el-icon-menu"></i>功能</template>
+	          <el-menu-item index="4-1">更换主题</el-menu-item>
+	          <el-menu-item index="4-2">更换主题</el-menu-item>
+	          <el-menu-item index="4-3">更换主题</el-menu-item>
+		      </el-submenu>
 		    </el-menu>
 			</el-col>
-			<el-col :span="21" class="board">
-				<div class="grid-content bg-purple-light">右边</div>
+			<el-col :span="21" :offset="3" class="board">
+				<router-view></router-view>
 			</el-col>
+
+
 		</el-row>
 		<!-- E content-body -->
 
@@ -69,9 +80,10 @@
 	}
 	.content-top{
 		width: 100%;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
+		z-index: 10;
 		height: 80px;
 		line-height: 80px;
 		background: #FCFCFC;
@@ -92,11 +104,16 @@
 	.content-body{
 		height: 100%;
 		padding-top: 80px;
+		position: relative;
 	}
 	.menu{
+		margin-top: 80px;
 		overflow: hidden;
 		background: #2C303C;
 		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
 	}
 	.board{
 		height: 100%;

@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import VueHighcharts from 'vue-highcharts'
 
-Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue.config.productionTip = false;
+Vue.use(ElementUI);
+Vue.use(VueHighcharts);
 
 /* eslint-disable no-new */
 new Vue({
