@@ -1,6 +1,9 @@
 # lumm-be
 
-> lumm manager system
+> 撸猫猫微信小程序后台管理系统。
+
+## Lumm
+撸猫猫微信小程序项目参见：[lumm](https://github.com/Panfen/lumm)
 
 ## Build Setup
 
