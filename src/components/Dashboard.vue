@@ -3,11 +3,11 @@
 
 		<!-- S content-top -->
 		<el-row class="content-top">
-			<el-col :span="6" class="top-left">
+			<el-col :span="18" class="top-left">
 				<img src="../assets/logo_black.png" width="60" height="60">
 				<span>撸猫猫后台管理系统</span>
 			</el-col>
-			<el-col :span="6" :offset="12">
+			<el-col :span="6">
 				千山慕雪
 			</el-col>
 		</el-row>
@@ -44,8 +44,6 @@
 			<el-col :span="21" :offset="3" class="board">
 				<router-view></router-view>
 			</el-col>
-
-
 		</el-row>
 		<!-- E content-body -->
 

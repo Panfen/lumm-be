@@ -60,7 +60,8 @@
 	export default {
 		data() {
 			return {
-				title: ''
+				title: '',
+				visible2: false
 			}
 		},
 		methods:{
