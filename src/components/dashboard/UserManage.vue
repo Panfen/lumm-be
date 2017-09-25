@@ -1,5 +1,5 @@
 <template>
-	<el-row class="content">
+	<el-row class="subcontent">
 		<!-- S  topbar -->
 		<el-row class="topbar">
 			<el-col :span="6">
@@ -17,13 +17,13 @@
 			<el-col :span="18" class="list">
 				<h2>全部粉丝</h2>
 				<p class="control">
-					<checkbox :checkboxName="checkboxName" v-on:selectedcheckbox="selecteAll"></checkbox>
+					<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
 					<el-button :plain="true" :disabled="reGroupBtn" size="small">重新分组</el-button>
 					<el-button :plain="true" :disabled="blockedBtn" size="small">加入黑名单</el-button>
 				</p>
 				<ul class="userlist">
 					<li v-for="user in users">
-						<checkbox :selectItem="selectItem"></checkbox>
+						<el-checkbox ></el-checkbox>
 						<img v-bind:src="user.url" width="48" height="48"/>
 						<h3>{{user.name}}</h3>
 					</li>
@@ -31,10 +31,7 @@
 			</el-col>
 			<el-col :span="6" class="groups">
 				<ul class="grouplist">
-					<li class="selected">全部粉丝(2)</li>
-					<li>活跃(0)</li>
-					<li>杭州(0)</li>
-					<li>上海(0)</li>
+					<li v-for="(group, index) in groups" v-bind:class="index === currentMenu ? 'selected' : ''" v-on:click="selectMenu(index)">{{group}}</li>
 				</ul>
 			</el-col>
 		</el-row>
@@ -43,7 +40,6 @@
 </template>
 
 <script>
-	import checkbox from '../tools/checkbox.vue'
 
 	export default{
 		data(){
@@ -53,25 +49,24 @@
 				reGroupBtn: true,
 				blockedBtn: true,
 				selectItem: false,
+				currentMenu: 0,
 				users: [
 					{name: '啊啊阿狸', url: 'https://ps.ssl.qhimg.com/t0189bbabbca6665578.jpg'},
-					{name: '认真的犯错', url: 'https://ps.ssl.qhimg.com/t014125947e3be23398.jpg'}
-				]
+					{name: '认真犯de错', url: 'https://ps.ssl.qhimg.com/t014125947e3be23398.jpg'}
+				],
+				groups: ['全部粉丝(2)', '活跃(0)', '杭州(0)', '上海(0)']
 			}
 		},
 		methods: {
 			handleSearch(){
 				//
 			},
-			selecteAll(selected){
-				const flag = !Boolean(selected);
-				this.reGroupBtn = flag;
-				this.blockedBtn = flag;
-				this.selectItem = !flag;
+			handleCheckAllChange(){
+				//
+			},
+			selectMenu(index){
+				this.currentMenu = index;
 			}
-		},
-		components: {
-			checkbox
 		}
 	}
 </script>
@@ -120,8 +115,11 @@
 		align-items: top;
 		border-bottom: 1px solid #eee;
 	}
+	.datalist .list .userlist li img{
+		margin-left: 10px;
+	}
 	.datalist .list .userlist h3{
-		margin-left: 8px;
+		margin-left: 10px;
 	}
 
 	.datalist .groups .grouplist{

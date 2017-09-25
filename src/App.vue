@@ -38,4 +38,12 @@ button{
 }
 
 /* common style*/
+.subcontent{
+    margin: 20px;
+    padding: 40px;
+    min-height: 500px;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #eee;
+  }
 </style>

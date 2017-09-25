@@ -1,5 +1,5 @@
 <template>
-	<el-row class="content">
+	<el-row class="subcontent">
 		<!-- S topbar -->
 		<el-row class="topbar">
 			<el-col :span="6">

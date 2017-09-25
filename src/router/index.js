@@ -5,6 +5,7 @@ import Dashboard from '@/components/Dashboard'
 import Index from '@/components/dashboard/Index'
 import UserManage from '@/components/dashboard/UserManage'
 import ArticleManage from '@/components/dashboard/ArticleManage'
+import ShopManage from '@/components/dashboard/ShopManage'
 
 Vue.use(Router)
 
@@ -27,6 +28,9 @@ export default new Router({
         },{
           path: '/article',
           component: ArticleManage
+        },{
+          path: '/shop',
+          component: ShopManage
         }
     	]
     },{
