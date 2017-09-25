@@ -17,11 +17,13 @@
 			<el-col :span="18" class="list">
 				<h2>全部粉丝</h2>
 				<p class="control">
-					<checkbox :checkboxName="checkboxName"></checkbox>
+					<checkbox :checkboxName="checkboxName" v-on:selectedcheckbox="selecteAll"></checkbox>
+					<el-button :plain="true" :disabled="reGroupBtn" size="small">重新分组</el-button>
+					<el-button :plain="true" :disabled="blockedBtn" size="small">加入黑名单</el-button>
 				</p>
 				<ul class="userlist">
 					<li v-for="user in users">
-						<checkbox></checkbox>
+						<checkbox :selectItem="selectItem"></checkbox>
 						<img v-bind:src="user.url" width="48" height="48"/>
 						<h3>{{user.name}}</h3>
 					</li>
@@ -48,6 +50,9 @@
 			return {
 				username: '',
 				checkboxName: '全选',
+				reGroupBtn: true,
+				blockedBtn: true,
+				selectItem: false,
 				users: [
 					{name: '啊啊阿狸', url: 'https://ps.ssl.qhimg.com/t0189bbabbca6665578.jpg'},
 					{name: '认真的犯错', url: 'https://ps.ssl.qhimg.com/t014125947e3be23398.jpg'}
@@ -57,6 +62,12 @@
 		methods: {
 			handleSearch(){
 				//
+			},
+			selecteAll(selected){
+				const flag = !Boolean(selected);
+				this.reGroupBtn = flag;
+				this.blockedBtn = flag;
+				this.selectItem = !flag;
 			}
 		},
 		components: {
@@ -94,15 +105,23 @@
 		padding: 10px 16px;
 		background: #f4f5f9;
 	}
+	.datalist .list .control button{
+		margin-left: 10px;
+	}
 	.datalist .list .userlist li{
 		padding: 10px 16px;
 		display: flex;
 		align-items: top;
 		border-bottom: 1px solid #eee;
 	}
-	.datalist .list .userlist li img{
-		border: 1px solid #eee;
-		margin-right: 10px;
+	.datalist .list .userlist li{
+		padding: 10px 16px;
+		display: flex;
+		align-items: top;
+		border-bottom: 1px solid #eee;
+	}
+	.datalist .list .userlist h3{
+		margin-left: 8px;
 	}
 
 	.datalist .groups .grouplist{

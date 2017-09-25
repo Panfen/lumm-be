@@ -33,6 +33,9 @@ h2,h3{
   font-size: 14px;
   font-weight: normal;
 }
+button{
+  font-family: '微软雅黑';
+}
 
 /* common style*/
 </style>

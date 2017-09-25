@@ -187,10 +187,13 @@
 	}
 	.yesterday .el-col .title{
 		font-weight: 500;
-		color: #666;
+		color: #333;
+		display: inline-block;
+		margin-bottom: 8px;
 	}
 	.yesterday .el-col p{
 		color: #aaa;
+		margin-top: 6px;
 	}
 	.yesterday .el-col:nth-child(1) p{
 		position: relative;

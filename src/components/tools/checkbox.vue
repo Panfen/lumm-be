@@ -1,7 +1,7 @@
 <template>
 	<el-row class="checkbox">
 		<p v-on:click="checkboxAct">
-			<i v-bind:class="{selected}"></i>
+			<i v-bind:class="selected"></i>
 			<span>{{checkboxName}}</span>
 		</p>
 	</el-row>
@@ -11,15 +11,27 @@
 	export default{
 		data(){
 			return {
-				selected: ''
+				checked: ''
 			}
 		},
 		props: {
-			checkboxName: String
+			checkboxName: String,
+			selectItem: Boolean,
+		},
+		computed: {
+			selected: function(){
+				if(this.selectItem || this.checked === 'checked'){
+					return 'checked';
+				}else{
+					return '';
+				}
+			}
 		},
 		methods: {
 			checkboxAct: function(){
-				this.selected = this.selected === '' ? 'selected' : '';
+				this.selectItem = false;
+				this.checked = this.checked === '' ? 'checked' : '';
+				this.$emit('selectedcheckbox', this.checked);
 			}
 		}
 	}
@@ -46,7 +58,7 @@
 		left: 0px;
 		position: absolute;
 	}
-	.checkbox i.selected:after{
+	.checkbox i.checked:after{
 		content: " ";
 		width: 6px;
 		height: 2px; 
@@ -56,7 +68,7 @@
 		transform: rotate(45deg);
 		position: absolute;
 	}
-	.checkbox i.selected:before{
+	.checkbox i.checked:before{
 		content: " ";
 		width: 13px;
 		height: 2px; 
