@@ -2,7 +2,7 @@
   "name": "lumm-be",
   "version": "1.0.0",
   "description": "lumm manager system",
-  "author": "panfen <2809956575@qq.com>",
+  "author": "Panfen <2809956575@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

@@ -9,6 +9,7 @@
 export default {
   name: 'app',
 }
+
 </script>
 
 <style>
@@ -16,8 +17,10 @@ export default {
   padding: 0;
   margin: 0;
 }
+body{
+  font-family: '微软雅黑','Avenir', Helvetica, Arial, sans-serif;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

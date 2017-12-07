@@ -3,7 +3,7 @@
 		<!-- S topbar -->
 		<el-row class="topbar">
 			<el-col :span="6">
-				<el-input placeholder="标题" icon="search" v-model="title" :on-icon-click="handleSearch"></el-input>
+				<el-input placeholder="标题" icon="search" v-model="searchTitle" :on-icon-click="handleSearch"></el-input>
 			</el-col>
 			<el-col :span="6" :offset="12">
 				<el-button type="success">新建文章</el-button>
@@ -11,48 +11,42 @@
 		</el-row>
 		<!-- E topbar -->
 
-		<!-- S list -->
-		<el-row>
-			<span>文章列表(共13篇)</span>
-			<el-button-group>
-			  <el-button icon="menu" size="mini"></el-button>
-			  <el-button icon="more" size="mini"></el-button>
-			</el-button-group>
-		</el-row>
-		<el-row class="article-list">
-			<el-col :span="8">
-				<el-row class="list-body">
-					<el-col class="time">
-						<span>更新于 07月04日</span>
-					</el-col>
-					<el-col class="wrap">
-						<h4>长期吸猫有什么不良反应？</h4>
-						<img src="../../assets/cover.jpg" width="100%" height="160">
-						<span>吸猫一日，想猫一生。据说中了猫毒无药可解。</span>
-					</el-col>
-				</el-row>
-				<el-row class="list-footer">
-					<el-col :span="12" class="btn">
-						<el-button icon="edit"></el-button>
-					</el-col>
-					<el-col :span="12" class="btn">
-						<el-popover
-						  ref="popover5"
-						  placement="top"
-						  width="160"
-						  v-model="visible2">
-						  <p>删除后将无法恢复，确定删除吗？</p>
-						  <div style="text-align: right; margin: 0">
-						    <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
-						    <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
-						  </div>
-						</el-popover>
-						<el-button v-popover:popover5 icon="delete"></el-button>
-					</el-col>
-				</el-row>
-			</el-col>
-		</el-row>
-		<!-- E list -->
+		<!-- S table -->
+		<el-table 
+			ref="multipleTable" 
+			:data="tableData" 
+			tooltip-effect="dark" 
+			style="width: 100%" 
+			:default-sort = "{prop: 'create_time', order: 'descending'}"
+			@selection-change="handleSelectionChange">
+			<el-table-column type="selection" width="55"></el-table-column>
+			<el-table-column prop="number" label="编号" width="120"></el-table-column>
+			<el-table-column prop="title" label="标题" width="220"></el-table-column>
+			<el-table-column prop="author" label="作者" width="140"></el-table-column>
+			<el-table-column prop="create_time" label="发表时间" width="180" sortable></el-table-column>
+			<el-table-column prop="edit_time" label="最后修改时间" width="180" sortable></el-table-column>
+			<el-table-column prop="view" label="浏览量" width="120" sortable></el-table-column>
+			<el-table-column prop="like" label="获赞量" width="120" sortable></el-table-column>
+			<el-table-column fixed="right" label="操作" width="160">
+				<template scope="scope">
+					<el-button @click="viewActicle" size="mini" type="success">查看</el-button>
+					<el-button @click="editActicle" size="mini" type="primary">编辑</el-button>
+					<el-button @click="deleActicle" size="mini" type="danger">删除</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
+		<!-- E table -->
+		<div align="center">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="totalCount">
+      </el-pagination>
+    </div>
 	</el-row>
 </template>
 
@@ -60,14 +54,61 @@
 	export default {
 		data() {
 			return {
-				title: '',
-				visible2: false
+				searchTitle: '',
+				selectIndex: [],
+				tableData: [{
+					number: '2017120701',
+					title: '如何顺利地给猫咪穿衣服？',
+					create_time: '2017.12.07 19:59:24',
+					edit_time: '2017.12.07 19:59:24',
+					author: '千山慕雪',
+					view: 167,
+					like: 53
+				},{
+					number: '2017120601',
+					title: '因纽特圆顶猫屋',
+					create_time: '2017.12.06 19:59:24',
+					edit_time: '2017.12.06 19:59:24',
+					author: '千山慕雪',
+					view: 32,
+					like: 124
+				},{
+					number: '2017120501',
+					title: '喵咪最关键的4次预防针',
+					create_time: '2017.12.05 19:59:24',
+					edit_time: '2017.12.05 19:59:24',
+					author: '千山慕雪',
+					view: 193,
+					like: 45
+				}],
+				currentPage: 1,
+				pagesize: 15,
+				totalCount: 3
 			}
 		},
 		methods:{
 			handleSearch(){
 				//
-			}
+			},
+			handleSelectionChange(val) {
+        this.multipleSelection = val;
+        console.log(val[0].get_view())
+      },
+      viewActicle(){
+      	//
+      },
+      editActicle(){
+      	//
+      },
+      deleActicle(){
+      	//
+      },
+      handleSizeChange(){
+      	//
+      },
+      handleCurrentChange(){
+      	//
+      }
 		}
 	}
 </script>
@@ -87,69 +128,13 @@
 	.topbar .el-col:last-child{
 		text-align: right;
 	}
-	.el-button-group{
-		margin-left: 10px;
+	.cell .el-button+.el-button{
+		margin-left: 6px;
+		font-size: 8px;
 	}
-	.article-list .el-col{
-		padding: 20px 40px 20px 0;
-		font-family: "微软雅黑";
-	}
-	.article-list .el-col .el-row{
-		border: 1px solid #e7e7eb;
-	}
-	.article-list .el-col .el-row .el-col.time{
-		padding: 12px 14px;
-	}
-	.article-list .el-col .el-row .el-col.time span{
-		color: #666;
-		font-size: 13px;
-		display: block;
-		padding-bottom: 12px;
-		border-bottom: 1px solid #e7e7eb;
-	}
-	.article-list .el-col .el-row .el-col.wrap{
-		padding: 0 12px 14px 12px;
-	}
-	.article-list .el-col .el-row .el-col.wrap h4{
-		color: #555;
-		padding: 0;
-		margin: 0 0 8px 0;
-		font-weight: 500;
-		font-size: 14px; 
-	}
-	.article-list .el-col .el-row .el-col.wrap span{
-		color: #666;
-		font-size: 13px;
-	}
-	.article-list .el-col .el-row.list-footer{
-		border-top: none; 
-	}
-	.article-list .el-col .el-row.list-footer .el-col{
-		padding: 0;
-		transition: all .5s;
-	}
-	.article-list .el-col .el-row.list-footer .el-col:first-child{
-		border-right: 1px solid #e7e7eb;
-	}
-	.article-list .el-col .el-row.list-footer .el-col .el-button{
-		width: 100%;
-		color: #ccc;
-		display: inline-block;
-		text-align: center;
-		padding: 6px 15px;
-		transition: all .5s;
-		border-radius: 0;
-		border: none;
-		padding: 10px 0;
-	}
-	.article-list .el-col .el-row.list-footer .el-col .el-button:hover{
-		color: #777;
-		background: #eee;
-	}
-	.el-popover p{
-		font-family: "微软雅黑"
-	}
-	.el-popover .el-button{
-		border-radius: 0;
+
+	/*pagination*/
+	.el-pagination{
+		margin-top: 10px;
 	}
 </style>
