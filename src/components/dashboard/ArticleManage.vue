@@ -3,7 +3,7 @@
 		<!-- S topbar -->
 		<el-row class="topbar">
 			<el-col :span="6">
-				<el-input placeholder="标题" icon="search" v-model="searchTitle" :on-icon-click="handleSearch"></el-input>
+				<el-input placeholder="标题" icon="search" v-model="searchTitle" :on-icon-click="handleSearch" @keyup.enter.native="handleSearch"></el-input>
 			</el-col>
 			<el-col :span="6" :offset="12">
 				<el-button type="success">新建文章</el-button>
@@ -88,7 +88,7 @@
 		},
 		methods:{
 			handleSearch(){
-				//
+				console.log(this.searchTitle)
 			},
 			handleSelectionChange(val) {
         this.multipleSelection = val;
