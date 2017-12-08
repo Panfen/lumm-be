@@ -9,6 +9,7 @@
 			</el-col>
 			<el-col :span="6">
 				千山慕雪
+				<i class="logout el-icon-d-arrow-right" @click="logoutAct"></i>
 			</el-col>
 		</el-row>
 		<!-- E content-top -->
@@ -68,7 +69,10 @@
       	}else if(keyPath[1] == '2-4'){
       		this.$router.push('/shop');
       	}
-      }
+      },
+      logoutAct(){
+	    	this.$router.push('/login');
+	    }
     }
 	}
 </script>
@@ -114,6 +118,11 @@
 		position: fixed;
 		top: 0;
 		left: 0;
+	}
+	.logout{
+		margin-left: 6px;
+		font-size: 14px;
+		cursor: pointer;
 	}
 	.board{
 		height: 100%;

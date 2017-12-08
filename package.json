@@ -12,6 +12,7 @@
   "dependencies": {
     "element-ui": "^1.4.2",
     "highcharts": "^5.0.14",
+    "mavon-editor": "^2.4.12",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue": "^2.3.3",

@@ -6,8 +6,13 @@ import Index from '@/components/dashboard/Index'
 import UserManage from '@/components/dashboard/UserManage'
 import ArticleManage from '@/components/dashboard/ArticleManage'
 import ShopManage from '@/components/dashboard/ShopManage'
+import CreateArticle from '@/components/dashboard/CreateArticle'
+
+import MavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 Vue.use(Router)
+Vue.use(MavonEditor)
 
 export default new Router({
   routes: [
@@ -31,6 +36,9 @@ export default new Router({
         },{
           path: '/shop',
           component: ShopManage
+        },{
+          path: '/createActicle',
+          component: CreateArticle
         }
     	]
     },{

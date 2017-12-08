@@ -6,7 +6,7 @@
 				<el-input placeholder="标题" icon="search" v-model="searchTitle" :on-icon-click="handleSearch" @keyup.enter.native="handleSearch"></el-input>
 			</el-col>
 			<el-col :span="6" :offset="12">
-				<el-button type="success">新建文章</el-button>
+				<el-button type="success" @click="createArticle">新建文章</el-button>
 			</el-col>
 		</el-row>
 		<!-- E topbar -->
@@ -108,6 +108,9 @@
       },
       handleCurrentChange(){
       	//
+      },
+      createArticle(){
+      	this.$router.push('/createActicle');
       }
 		}
 	}
