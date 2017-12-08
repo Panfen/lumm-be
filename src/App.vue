@@ -19,13 +19,13 @@ export default {
 }
 body{
   font-family: '微软雅黑','Avenir', Helvetica, Arial, sans-serif;
+  background: #F4F3F8;
 }
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #F4F3F8;
 }
 
 /* reset css*/
