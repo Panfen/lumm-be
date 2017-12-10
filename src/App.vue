@@ -44,7 +44,7 @@ button{
 .subcontent{
   margin: 20px;
   padding: 40px;
-  min-height: 500px;
+  min-height: 544px;
   text-align: left;
   background: #fff;
   border: 1px solid #eee;

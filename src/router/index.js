@@ -6,6 +6,8 @@ import Index from '@/components/dashboard/Index'
 import UserManage from '@/components/dashboard/UserManage'
 import ArticleManage from '@/components/dashboard/ArticleManage'
 import ShopManage from '@/components/dashboard/ShopManage'
+import TopicManage from '@/components/dashboard/TopicManage'
+import PicManage from '@/components/dashboard/PicManage'
 import CreateArticle from '@/components/dashboard/CreateArticle'
 
 import MavonEditor from 'mavon-editor'
@@ -36,6 +38,12 @@ export default new Router({
         },{
           path: '/shop',
           component: ShopManage
+        },{
+          path: '/topic',
+          component: TopicManage
+        },{
+          path: '/picture',
+          component: PicManage
         },{
           path: '/createActicle',
           component: CreateArticle

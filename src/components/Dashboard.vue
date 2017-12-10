@@ -66,8 +66,12 @@
       		this.$router.push('/user');
       	}else if(keyPath[1] == '2-2'){
       		this.$router.push('/article');
+      	}else if(keyPath[1] == '2-3'){
+      		this.$router.push('/topic');
       	}else if(keyPath[1] == '2-4'){
       		this.$router.push('/shop');
+      	}else if(keyPath[1] == '2-5'){
+      		this.$router.push('/picture');
       	}
       },
       logoutAct(){

@@ -8,7 +8,6 @@
 			<el-col :span="6" :offset="12">
 				<el-button type="success">新建分组</el-button>
 			</el-col>
-			</el-col>
 		</el-row>
 		<!-- E topbar -->
 
@@ -72,14 +71,6 @@
 </script>
 
 <style scoped>
-	.content{
-		margin: 20px;
-    padding: 40px;
-    min-height: 500px;
-    text-align: left;
-    background: #fff;
-    border: 1px solid #eee;
-	}
 	.topbar .el-col:last-child{
 		text-align: right;
 	}
