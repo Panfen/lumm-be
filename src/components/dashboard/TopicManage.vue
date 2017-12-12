@@ -77,7 +77,8 @@
 				}],
 				currentPage: 1,
 				pagesize: 15,
-				totalCount: 3
+				totalCount: 3,
+				multipleSelection: []
 			}
 		},
 		methods:{
