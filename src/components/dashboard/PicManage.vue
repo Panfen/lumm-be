@@ -4,14 +4,14 @@
 		<el-row class="topbar">
 			<el-col :span="18">
 				<el-col :span="8">
-					<el-input placeholder="图片名称" icon="search" v-model="picname" :on-icon-click="handleSearch"></el-input>
+					<el-input placeholder="图片名称" prefix-icon="el-icon-search" v-model="picname" :change="handleSearch"></el-input>
 				</el-col>
 				<el-button class="refresh-pic" icon="el-icon-refresh">换一批</el-button>
 				<span class="pic-amount">共 125 张</span>
 			</el-col>
 			<el-col :span="6">
 				<el-button type="success" id="upload-pic">上传图片</el-button>
-				<el-button type="primary" id="manage-pic">批量管理</el-button>
+				<el-button type="primary" id="manage-pic" @click="batchManageAct">{{batchManageTitle}}</el-button>
 			</el-col>
 		</el-row>
 		<!-- E topbar -->
@@ -22,15 +22,15 @@
 				<ul>
 					<li v-for="(url,index) in urlList" class="pic-wrap">
 						<img v-bind:src="url" width="200" height="120" @click="viewPicAct(index)"/>
-						<el-checkbox :key="url" class="pic-checkbox"></el-checkbox>
+						<el-checkbox v-show="checkShow" :key="url" :label="url" class="pic-checkbox"></el-checkbox>
 					</li>
 				</ul>
 			</el-checkbox-group>
-			<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+			<el-checkbox v-model="checkAll" v-show="checkShow" @change="handleCheckAllChange">全选</el-checkbox>
 		</el-row>
 
 		<!-- 弹出层 -->
-		<el-dialog title="图片查看" :visible.sync="dialogVisible" width="30%" v-bind:showClose="false">
+		<el-dialog title="图片查看" :visible.sync="dialogVisible" v-bind:showClose="false">
 			<p>仙女布偶</p>
 		  <img v-bind:src="currentUrl">
 		  <span slot="footer" class="dialog-footer">
@@ -52,8 +52,9 @@
 				currentIndex: 0,
 				currentUrl: '',
 				checkAll: false,
-				checkedPics: '',
-				isIndeterminate: true,
+				checkedPics: [],
+				batchManageTitle: '批量管理',
+				checkShow: false,
 				urlList: ['http://p3.so.qhimgs1.com/bdr/_240_/t01af075dc8036b8ad3.jpg',
 									'http://p0.so.qhimgs1.com/bdr/_240_/t01979009503370fd70.jpg',
 									'http://p1.so.qhimgs1.com/bdr/_240_/t01afb32fc2cfcdcedd.jpg',
@@ -92,15 +93,18 @@
       	this.currentUrl = this.urlList[this.currentIndex];
       },
       handleCheckedPicsChange(value){
-      	console.log(value)
       	var checkedCount = value.length;
         this.checkAll = checkedCount === this.urlList.length;
-        this.isIndeterminate = checkedCount > 0 && checkedCount < this.urlList.length;
       },
       handleCheckAllChange(val) {
         this.checkedPics = val ? this.urlList : [];
-        this.isIndeterminate = false;
       },
+      batchManageAct(){
+      	this.checkedPics = [];
+      	this.checkAll = false;
+      	this.batchManageTitle = this.batchManageTitle == '批量管理' ? '退出管理' : '批量管理';
+      	this.checkShow = !this.checkShow;
+      }
     }
 	}
 </script>
@@ -137,6 +141,9 @@
 		top: 4px;
 		right: 4px;
 		position: absolute;
+	}
+	.piclist ul li.pic-wrap .pic-checkbox .el-checkbox__label{
+		display: none;
 	}
 	.el-dialog__body{
 		position: relative;

@@ -17,10 +17,10 @@
 		<!-- S content-body -->
 		<el-row class="content-body">
 			<el-col :span="3" class="menu">
-				<el-menu default-active="1" class="el-menu-vertical-demo" @select="handleSelect" theme="dark"  unique-opened>
-					<el-menu-item index="1"><i class="el-icon-star-off"></i>主页</el-menu-item>
+				<el-menu default-active="1" class="el-menu-vertical-demo" @select="handleSelect" unique-opened>
+					<el-menu-item index="1"><i class="el-icon-star-off"></i>系统主页</el-menu-item>
 		      <el-submenu index="2">
-		      	<template slot="title"><i class="el-icon-setting"></i>管理</template>
+		      	<template slot="title"><i class="el-icon-setting"></i>系统管理</template>
 		      	<el-menu-item index="2-1">用户管理</el-menu-item>
 	          <el-menu-item index="2-2">文章管理</el-menu-item>
 	          <el-menu-item index="2-3">帖子管理</el-menu-item>
@@ -28,14 +28,14 @@
 	          <el-menu-item index="2-5">图片管理</el-menu-item>
 		      </el-submenu>
 		      <el-submenu index="3">
-		      	<template slot="title"><i class="el-icon-information"></i>分析</template>
+		      	<template slot="title"><i class="el-icon-rank"></i>系统分析</template>
 	          <el-menu-item index="3-1">菜单分析</el-menu-item>
 	          <el-menu-item index="3-2">用户分析</el-menu-item>
 	          <el-menu-item index="3-3">素材分析</el-menu-item>
 	          <el-menu-item index="3-4">图片管理</el-menu-item>
 	        </el-submenu>
 	        <el-submenu index="4">
-		        <template slot="title"><i class="el-icon-menu"></i>功能</template>
+		        <template slot="title"><i class="el-icon-menu"></i>系统功能</template>
 	          <el-menu-item index="4-1">更换主题</el-menu-item>
 	          <el-menu-item index="4-2">更换主题</el-menu-item>
 	          <el-menu-item index="4-3">更换主题</el-menu-item>

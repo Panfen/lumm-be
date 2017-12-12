@@ -2,40 +2,34 @@
 	<el-row class="subcontent">
 		<!-- S topbar -->
 		<el-row class="topbar">
-			<el-col :span="6">
-				<el-input placeholder="标题" icon="search" v-model="searchTitle" :on-icon-click="handleSearch" @keyup.enter.native="handleSearch"></el-input>
+			<el-col :span="18">
+				<el-col :span="8">
+					<el-input placeholder="标题" prefix-icon="el-icon-search" v-model="searchTitle" @change="handleSearch" @keyup.enter.native="handleSearch"></el-input>
+				</el-col>
+				<el-col :span="10">
+					<el-button @click="viewActicle" icon="el-icon-view" class="view-btn">查看</el-button>
+					<el-button @click="deleActicle" type="danger" icon="el-icon-delete" class="dele-btn">删除</el-button>
+				</el-col>
 			</el-col>
-			<el-col :span="6" :offset="12">
-				<el-button type="success" @click="createArticle">新建文章</el-button>
+			<el-col :span="6">
+				<el-button type="success" @click="createArticle" icon="el-icon-plus">新建文章</el-button>
 			</el-col>
 		</el-row>
 		<!-- E topbar -->
 
 		<!-- S table -->
-		<el-table 
-			ref="multipleTable" 
-			:data="tableData" 
-			tooltip-effect="dark" 
-			style="width: 100%" 
-			:default-sort = "{prop: 'create_time', order: 'descending'}"
-			@selection-change="handleSelectionChange">
+		<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" :default-sort = "{prop:'create_time', order:'descending'}" @selection-change="handleSelectionChange">
 			<el-table-column type="selection" width="55"></el-table-column>
 			<el-table-column prop="number" label="编号" width="120"></el-table-column>
 			<el-table-column prop="title" label="标题" width="220"></el-table-column>
 			<el-table-column prop="author" label="作者" width="140"></el-table-column>
 			<el-table-column prop="create_time" label="发表时间" width="180" sortable></el-table-column>
 			<el-table-column prop="edit_time" label="最后修改时间" width="180" sortable></el-table-column>
-			<el-table-column prop="view" label="浏览量" width="120" sortable></el-table-column>
-			<el-table-column prop="like" label="获赞量" width="120" sortable></el-table-column>
-			<el-table-column fixed="right" label="操作" width="160">
-				<template scope="scope">
-					<el-button @click="viewActicle" size="mini" type="success">查看</el-button>
-					<el-button @click="editActicle" size="mini" type="primary">编辑</el-button>
-					<el-button @click="deleActicle" size="mini" type="danger">删除</el-button>
-				</template>
-			</el-table-column>
+			<el-table-column prop="view" label="浏览量" width="100" sortable></el-table-column>
+			<el-table-column prop="like" label="获赞量" width="100" sortable></el-table-column>
 		</el-table>
 		<!-- E table -->
+		
 		<div align="center">
       <el-pagination
         @size-change="handleSizeChange"
@@ -92,12 +86,8 @@
 			},
 			handleSelectionChange(val) {
         this.multipleSelection = val;
-        console.log(val[0].get_view())
       },
       viewActicle(){
-      	//
-      },
-      editActicle(){
       	//
       },
       deleActicle(){
@@ -130,6 +120,14 @@
 	}
 	.topbar .el-col:last-child{
 		text-align: right;
+	}
+	.topbar .view-btn{
+		float: left;
+		margin: 0 6px;
+	}
+	.topbar .dele-btn{
+		float: left;
+		margin-left: 0;
 	}
 	.cell .el-button+.el-button{
 		margin-left: 6px;
