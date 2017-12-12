@@ -25,8 +25,8 @@
 			<el-table-column prop="author" label="作者" width="140"></el-table-column>
 			<el-table-column prop="create_time" label="发表时间" width="180" sortable></el-table-column>
 			<el-table-column prop="edit_time" label="最后修改时间" width="180" sortable></el-table-column>
-			<el-table-column prop="view" label="浏览量" width="100" sortable></el-table-column>
-			<el-table-column prop="like" label="获赞量" width="100" sortable></el-table-column>
+			<el-table-column prop="view" label="浏览" width="100" sortable></el-table-column>
+			<el-table-column prop="like" label="点赞" width="100" sortable></el-table-column>
 		</el-table>
 		<!-- E table -->
 		
