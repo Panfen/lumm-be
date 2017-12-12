@@ -48,8 +48,6 @@
 		data() {
 			return {
 				activeName: 'shopManage',
-
-
 				// 产品管理
 				searchProuct: '',
 				groups: [{
