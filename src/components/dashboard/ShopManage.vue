@@ -21,13 +21,12 @@
 					<el-table-column type="selection" width="55"></el-table-column>
 					<el-table-column prop="id" label="产品编号" width="120"></el-table-column>
 					<el-table-column prop="name" label="产品名称" width="180"></el-table-column>
-					<el-table-column prop="group" label="所属分类" width="100" :filters="groups" filter-placement="bottom-end">
-			      <template slot-scope="scope">
-			        <el-tag :type="scope.row.group === '家' ? 'primary' : 'success'"
-			          close-transition>{{scope.row.group}}
-		          </el-tag>
-			      </template>
+
+					<el-table-column prop="group" label="所属分类" width="100" :filters="groups" :filter-method="filterGroup" filter-placement="bottom-end">
+						<!--  scope 的值对应一个临时变量名，此变量接收从子组件中传递的 props 对象 -->
+			      
       		</el-table-column>
+
 					<el-table-column prop="orig_price" label="进价" width="80" sortable></el-table-column>
 					<el-table-column prop="sale_price" label="售价" width="80" sortable></el-table-column>
 					<el-table-column prop="sale_total" label="售量" width="80" sortable></el-table-column>
@@ -98,8 +97,8 @@
       handleSearch(){
       	//
       },
-      filterTag(value, row) {
-        return row.tag === value;
+      filterGroup(value, row) {
+        return row.group === value;
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
