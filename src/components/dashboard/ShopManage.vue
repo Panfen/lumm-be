@@ -1,32 +1,63 @@
 <template>
 	<el-row class="subcontent">
 		<el-tabs v-model="activeName" @tab-click="handleClick">
-		 <el-tab-pane label="店铺管理" name="shopManage">店铺管理</el-tab-pane>
-	    <el-tab-pane label="产品管理" name="prodManage">
-	    	<!-- S  topbar -->
+
+		 	<el-tab-pane label="店铺管理" name="shopManage">
+		 		<!--  -->
+		 	</el-tab-pane>
+
+	    <el-tab-pane label="商品管理" name="prodManage">
+	    	<!-- S topbar -->
 				<el-row class="topbar">
 					<el-col :span="18">
 						<el-col :span="8">
-							<el-input placeholder="产品名称" prefix-icon="el-icon-search" v-model="searchProuct" :change="handleSearch"></el-input>
+							<el-input placeholder="商品名称" prefix-icon="el-icon-search" v-model="searchProuct" :change="handleSearch"></el-input>
 						</el-col>
-						<el-button class="setting-product-btn" icon="el-icon-menu">操作</el-button>
+						<el-popover ref="popover" placement="right" trigger="click">
+						  <ul class="menu-item">
+						  	<li><i class="el-icon-edit"></i>编辑</li>
+						  	<li><i class="el-icon-download"></i>下架</li>
+						  	<li><i class="el-icon-upload2"></i>上架</li>
+						  	<li><i class="el-icon-sort"></i>调整</li>
+						  	<li><i class="el-icon-delete"></i>删除</li>
+						  </ul>
+						</el-popover>
+						<el-button v-popover:popover class="setting-product-btn" icon="el-icon-menu">操作</el-button>
 					</el-col>
 					<el-col :span="6">
-						<el-button type="success">上架商品</el-button>
+						<el-button type="success" class="upload-product-btn" @click="uploadDialog=true">上架商品</el-button>
 					</el-col>
 				</el-row>
+				<el-dialog title="上架商品" :visible.sync="uploadDialog" width="600px">
+				  <el-form :model="form" class="upload-form">
+				    <el-form-item label="商品名称" :label-width="formLabelWidth">
+				      <el-input v-model="form.name" auto-complete="off"></el-input>
+				    </el-form-item>
+				    <el-form-item label="商品类别" :label-width="formLabelWidth">
+				      <el-select v-model="form.region" placeholder="请选择商品类别">
+				        <el-option label="猫窝" value="猫窝"></el-option>
+				        <el-option label="猫粮" value="猫粮"></el-option>
+				      </el-select>
+				    </el-form-item>
+				  </el-form>
+				  <div slot="footer" class="dialog-footer">
+				    <el-button @click="uploadDialog=false">取 消</el-button>
+				    <el-button type="success" @click="uploadDialog=false">确 定</el-button>
+				  </div>
+				</el-dialog>
 				<!-- E topbar -->
+
 				<!-- S table -->
 				<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" :default-sort = "{prop:'upload_time', order:'sale_total'}" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="55"></el-table-column>
-					<el-table-column prop="id" label="产品编号" width="120"></el-table-column>
-					<el-table-column prop="name" label="产品名称" width="180"></el-table-column>
-
-					<el-table-column prop="group" label="所属分类" width="100" :filters="groups" :filter-method="filterGroup" filter-placement="bottom-end">
-						<!--  scope 的值对应一个临时变量名，此变量接收从子组件中传递的 props 对象 -->
-			      
-      		</el-table-column>
-
+					<el-table-column prop="id" label="商品编号" width="120"></el-table-column>
+					<el-table-column prop="logo" label="缩略图" width="120">
+						<template scope="scope">
+						 	<img v-bind:src="scope.row.logo" width="60" height="60"/>
+			      </template>
+					</el-table-column>
+					<el-table-column prop="name" label="商品名称" width="180"></el-table-column>
+					<el-table-column prop="group" label="商品类别" width="100" :filters="groups" :filter-method="filterGroup" filter-placement="bottom-end"></el-table-column>
 					<el-table-column prop="orig_price" label="进价" width="80" sortable></el-table-column>
 					<el-table-column prop="sale_price" label="售价" width="80" sortable></el-table-column>
 					<el-table-column prop="sale_total" label="售量" width="80" sortable></el-table-column>
@@ -35,9 +66,16 @@
 					<el-table-column prop="upload_time" label="上架时间" width="180" sortable></el-table-column>
 				</el-table>
 				<!-- E table -->
+
 	    </el-tab-pane>
-	    <el-tab-pane label="订单管理" name="orderManage">订单管理</el-tab-pane>
-	    <el-tab-pane label="结算管理" name="settleAccounts">结算管理</el-tab-pane>
+
+	    <el-tab-pane label="订单管理" name="orderManage">
+	    	订单管理
+	    </el-tab-pane>
+
+	    <el-tab-pane label="结算管理" name="settleAccounts">
+	    	结算管理
+	    </el-tab-pane>
 	  </el-tabs>
 	</el-row>
 </template>
@@ -47,8 +85,9 @@
 		data() {
 			return {
 				activeName: 'shopManage',
-				// 产品管理
+				// 商品管理
 				searchProuct: '',
+				uploadDialog: false,
 				groups: [{
 					text: '猫粮',
 					value: '猫粮'
@@ -59,6 +98,7 @@
 				tableData: [{
 					id: '2017120701',
 					name: 'whiskas伟嘉',
+					logo: 'http://ozlcirvd6.bkt.clouddn.com/good1.jpg',
 					orig_price: 65.5,
 					sale_price: 78.5,
 					upload_time: '2017.12.07 19:59:24',
@@ -69,6 +109,7 @@
 				},{
 					id: '2017120601',
 					name: 'Friskies猫粮',
+					logo: 'http://ozlcirvd6.bkt.clouddn.com/good3.jpg',
 					orig_price: 59.0,
 					sale_price: 67.5,
 					upload_time: '2017.12.06 19:59:24',
@@ -79,6 +120,7 @@
 				},{
 					id: '2017120501',
 					name: '舒慕高档宠物棉窝',
+					logo: 'http://ozlcirvd6.bkt.clouddn.com/good9.jpg',
 					orig_price: 129.0,
 					sale_price: 149.0,
 					upload_time: '2017.12.05 19:59:24',
@@ -87,7 +129,18 @@
 					collect: 45,
 					sale_total: 89
 				}],
-				multipleSelection: []
+				multipleSelection: [],
+				form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'
 			}
 		},
 		methods: {
@@ -107,9 +160,31 @@
 	}
 </script>
 
-<style scoped>
+<style>
+	.el-popover{
+		min-width: 0;
+		padding: 0;
+	}
+	.el-popover ul.menu-item li{
+		cursor: pointer;
+		line-height: 24px;
+		text-align: center;
+		padding: 4px 20px;
+		font-family: '微软雅黑';
+	}
+	.el-popover ul.menu-item li:hover{
+		background: #ecf5ff;
+	}
+	.el-form.upload-form .el-input{
+		width: 300px;
+	}
+	.el-popover ul.menu-item li i{
+		margin-right: 6px;
+	}
 	.setting-product-btn{
 		margin-left: 6px;
 	}
-
+	.upload-product-btn{
+		float: right;
+	}
 </style>
