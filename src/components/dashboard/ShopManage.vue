@@ -52,7 +52,7 @@
 					<el-table-column type="selection" width="55"></el-table-column>
 					<el-table-column prop="id" label="商品编号" width="120"></el-table-column>
 					<el-table-column prop="logo" label="缩略图" width="120">
-						<template scope="scope">
+						<template slot-scope="scope">
 						 	<img v-bind:src="scope.row.logo" width="60" height="60"/>
 			      </template>
 					</el-table-column>
