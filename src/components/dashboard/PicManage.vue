@@ -110,9 +110,6 @@
 </script>
 
 <style>
-	.topbar .el-col:last-child{
-		text-align: right;
-	}
 	.refresh-pic{
 		margin: 0 6px;
 	}

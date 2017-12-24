@@ -49,5 +49,7 @@ button{
   background: #fff;
   border: 1px solid #eee;
 }
-.fn-clear{}
+.topbar .el-col:last-child{
+  text-align: right;
+}
 </style>

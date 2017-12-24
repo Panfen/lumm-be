@@ -108,20 +108,6 @@
 </script>
 
 <style scoped>
-	.content{
-		margin: 20px;
-    padding: 40px;
-    min-height: 500px;
-    text-align: left;
-    background: #fff;
-    border: 1px solid #eee;
-	}
-	.topbar{
-		margin-bottom: 20px;
-	}
-	.topbar .el-col:last-child{
-		text-align: right;
-	}
 	.topbar .view-btn{
 		float: left;
 		margin: 0 6px;

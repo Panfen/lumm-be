@@ -25,35 +25,9 @@
 						<el-button v-popover:popover class="setting-product-btn" icon="el-icon-menu">操作</el-button>
 					</el-col>
 					<el-col :span="6">
-						<el-button type="success" class="upload-product-btn" @click="uploadDialog=true">上架商品</el-button>
+						<el-button type="success" class="upload-product-btn" @click="uploadProductAct">上架商品</el-button>
 					</el-col>
 				</el-row>
-				<el-dialog title="上架商品" :visible.sync="uploadDialog" width="600px">
-				  <el-form :model="form" class="upload-form">
-				    <el-form-item label="商品名称" :label-width="formLabelWidth">
-				      <el-input v-model="form.name" auto-complete="off"></el-input>
-				    </el-form-item>
-				    <el-form-item label="商品类别" :label-width="formLabelWidth">
-				      <el-select v-model="form.region" placeholder="请选择商品类别">
-				        <el-option label="猫窝" value="猫窝"></el-option>
-				        <el-option label="猫粮" value="猫粮"></el-option>
-				      </el-select>
-				    </el-form-item>
-				    <el-form-item label="进价" :label-width="formLabelWidth">
-				      <el-input v-model="form.orig_price" auto-complete="off"></el-input>
-				    </el-form-item>
-				    <el-form-item label="售价" :label-width="formLabelWidth">
-				      <el-input v-model="form.sale_price" auto-complete="off"></el-input>
-				    </el-form-item>
-				    <el-form-item label="图片" :label-width="formLabelWidth">
-				      <el-input v-model="form.sale_price" auto-complete="off"></el-input>
-				    </el-form-item>
-				  </el-form>
-				  <div slot="footer" class="dialog-footer">
-				    <el-button @click="uploadDialog=false">取 消</el-button>
-				    <el-button type="success" @click="uploadDialog=false">确 定</el-button>
-				  </div>
-				</el-dialog>
 				<!-- E topbar -->
 
 				<!-- S table -->
@@ -165,6 +139,9 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
+      uploadProductAct(){
+      	this.$router.push('/uploadProduct');
+      }
     }
 	}
 </script>

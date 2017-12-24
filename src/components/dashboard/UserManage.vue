@@ -125,9 +125,6 @@
 </script>
 
 <style>
-	.topbar .el-col:last-child{
-		text-align: right;
-	}
 	.users-checkbox-group .el-checkbox__label{
 		display: none;
 	}
