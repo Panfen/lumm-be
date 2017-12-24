@@ -1,15 +1,20 @@
 <template>
 	<el-row class="subcontent">
-		<el-row>
-			<el-input class="title-input" v-model="title" placeholder="文章标题"></el-input>
-			<el-select v-model="type" placeholder="请选择">
-		    <el-option
-		      v-for="item in options"
-		      :key="item.value"
-		      :label="item.label"
-		      :value="item.value">
-		    </el-option>
-		  </el-select>
+		<el-row class="topbar">
+			<el-col :span="18">
+				<el-input class="title-input" v-model="title" placeholder="文章标题"></el-input>
+				<el-select v-model="type" placeholder="请选择">
+			    <el-option
+			      v-for="item in options"
+			      :key="item.value"
+			      :label="item.label"
+			      :value="item.value">
+			    </el-option>
+			  </el-select>
+			</el-col>
+			<el-col :span="6">
+				<el-button type="success" @click="backArticleList" icon="el-icon-caret-left">返回列表</el-button>
+			</el-col>
 		</el-row>
 		<el-row>
 			<mavon-editor v-model="pessage" :ishljs="false" :toolbars="toolbars"/>
@@ -79,6 +84,9 @@
 			},
 			publicArticle(){
 				//
+			},
+			backArticleList(){
+				this.$router.push('/article');
 			}
 		}
 	}

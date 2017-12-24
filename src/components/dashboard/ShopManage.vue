@@ -39,6 +39,15 @@
 				        <el-option label="猫粮" value="猫粮"></el-option>
 				      </el-select>
 				    </el-form-item>
+				    <el-form-item label="进价" :label-width="formLabelWidth">
+				      <el-input v-model="form.orig_price" auto-complete="off"></el-input>
+				    </el-form-item>
+				    <el-form-item label="售价" :label-width="formLabelWidth">
+				      <el-input v-model="form.sale_price" auto-complete="off"></el-input>
+				    </el-form-item>
+				    <el-form-item label="图片" :label-width="formLabelWidth">
+				      <el-input v-model="form.sale_price" auto-complete="off"></el-input>
+				    </el-form-item>
 				  </el-form>
 				  <div slot="footer" class="dialog-footer">
 				    <el-button @click="uploadDialog=false">取 消</el-button>
