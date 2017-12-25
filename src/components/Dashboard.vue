@@ -90,7 +90,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 2017;
+		z-index: 101;
 		height: 80px;
 		line-height: 80px;
 		background: #FCFCFC;
