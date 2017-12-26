@@ -239,7 +239,7 @@
       	this.showDetailBox = select === '1';
       },
       handleInputChange(value){
-      	this.textCount = 500 -  value.trim().length
+      	this.textCount = 500 -  value.trim().length;
       }
 		}
 	}

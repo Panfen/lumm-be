@@ -1,17 +1,13 @@
 <template>
 	<el-row class="subcontent">
-		<el-tabs v-model="activeName" @tab-click="handleClick">
+		<el-tabs v-model="activeName" @tab-click="handleClickTab">
 
-		 	<el-tab-pane label="店铺管理" name="shopManage">
-		 		<!--  -->
-		 	</el-tab-pane>
-
-	    <el-tab-pane label="商品管理" name="prodManage">
+			<el-tab-pane label="商品管理" name="prodManage">
 	    	<!-- S topbar -->
 				<el-row class="topbar">
 					<el-col :span="18">
 						<el-col :span="8">
-							<el-input placeholder="商品名称" prefix-icon="el-icon-search" v-model="searchProuct" :change="handleSearch"></el-input>
+							<el-input placeholder="商品名称" prefix-icon="el-icon-search" v-model="searchProuct" :change="handleSearchProduct"></el-input>
 						</el-col>
 						<el-popover ref="popover" placement="right" trigger="click">
 						  <ul class="menu-item">
@@ -49,11 +45,41 @@
 					<el-table-column prop="upload_time" label="上架时间" width="180" sortable></el-table-column>
 				</el-table>
 				<!-- E table -->
-
 	    </el-tab-pane>
 
+		 	<el-tab-pane label="店铺管理" name="shopManage">
+		 		<!--  -->
+		 	</el-tab-pane>
+
 	    <el-tab-pane label="订单管理" name="orderManage">
-	    	订单管理
+	    	<!-- S topbar -->
+				<el-row class="topbar">
+					<el-col :span="6">
+						<el-input placeholder="订单编号" prefix-icon="el-icon-search" v-model="searchOrder" :change="handleSearchOrder"></el-input>
+					</el-col>
+					<el-col :span="18" class="">
+						<el-radio-group v-model="radio3">
+				      <el-radio-button label="全部订单"></el-radio-button>
+				      <el-radio-button label="代发货"></el-radio-button>
+				      <el-radio-button label="已发货"></el-radio-button>
+				      <el-radio-button label="维权中"></el-radio-button>
+				    </el-radio-group>
+				    <el-radio-group v-model="radio3">
+				      <el-radio-button label="近7日"></el-radio-button>
+				      <el-radio-button label="近15日"></el-radio-button>
+				      <el-radio-button label="近30日"></el-radio-button>
+				      <el-date-picker
+					      v-model="value6"
+					      type="daterange"
+					      range-separator="至"
+					      start-placeholder="开始日期"
+					      end-placeholder="结束日期">
+					    </el-date-picker>
+				    </el-radio-group>
+					</el-col>
+				</el-row>
+
+				<!-- E topbar -->
 	    </el-tab-pane>
 
 	    <el-tab-pane label="结算管理" name="settleAccounts">
@@ -67,7 +93,7 @@
 	export default {
 		data() {
 			return {
-				activeName: 'shopManage',
+				activeName: 'prodManage',
 				// 商品管理
 				searchProuct: '',
 				uploadDialog: false,
@@ -123,14 +149,15 @@
           resource: '',
           desc: ''
         },
-        formLabelWidth: '120px'
+        formLabelWidth: '120px',
+        searchOrder: ''
 			}
 		},
 		methods: {
-      handleClick(tab, event) {
+      handleClickTab(tab, event) {
         //console.log(tab, event);
       },
-      handleSearch(){
+      handleSearchProduct(){
       	//
       },
       filterGroup(value, row) {
@@ -141,6 +168,10 @@
       },
       uploadProductAct(){
       	this.$router.push('/uploadProduct');
+      },
+
+      handleSearchOrder(){
+      	//
       }
     }
 	}
