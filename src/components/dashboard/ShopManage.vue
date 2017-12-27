@@ -21,7 +21,7 @@
 		 		<!-- E banner -->
 		 		<!-- S indicator -->
 		 		<el-row class="indicator">
-		 			<el-col class="ind-header">昨日关键指标</el-col>
+		 			<el-col class="ind-header single">昨日关键指标</el-col>
 		 			<el-col class="ind-content" >
 		 				<el-col :span="4">
 		 					<p>订单数</p>
@@ -51,12 +51,26 @@
 		 		</el-row>
 		 		<el-row class="indicator">
 		 			<el-col class="ind-header">
-		 				<el-col :span="6">关键指标趋势</el-col>
-		 				<el-col :span="18">
-		 					<el-col></el-col>
+		 				<el-col :span="4">关键指标趋势</el-col>
+		 				<el-col :span="20">
+			 				<el-radio-group v-model="trendDate">
+					      <el-radio-button label="最近7天"></el-radio-button>
+					      <el-radio-button label="最近15天"></el-radio-button>
+					      <el-radio-button label="最近30天"></el-radio-button>
+					    </el-radio-group>
+				    	<el-select v-model="value" placeholder="请选择">
+						    <el-option
+						      v-for="item in options"
+						      :key="item.value"
+						      :label="item.label"
+						      :value="item.value">
+						    </el-option>
+						  </el-select>
 		 				</el-col>
 		 			</el-col>
-		 			<el-col class="ind-content"></el-col>
+		 			<el-col class="ind-content">
+						<highcharts :options="options1" class="chart"></highcharts>
+		 			</el-col>
 		 		</el-row>
 		 		<!-- E indicator -->
 		 	</el-tab-pane>
@@ -261,7 +275,74 @@
         }],
         waitToDelivery: 6,
         waitToReceive: 12,
-        finishedOrder: 564
+        finishedOrder: 564,
+        trendDate: '最近7天',
+        options: [{
+          value: 'select_order_num',
+          label: '订单数'
+        }, {
+          value: 'select_prod_num',
+          label: '成交商品数'
+        }, {
+          value: 'select_total_proice',
+          label: '成交金额'
+        }, {
+          value: 'select_shop_views',
+          label: '店铺浏览量'
+        }, {
+          value: 'select_shelve_views',
+          label: '货架浏览量'
+        }, {
+          value: 'select_prod_views',
+          label: '商品浏览量'
+        }],
+        value: 'select_order_num',
+        options1: {
+        	chart: {
+		        type: 'area'
+			    },
+        	title: {
+		        text: ''
+			    },
+			    xAxis: {
+		        categories: ['12.21', '12.22', '12.23', '12.24', '12.25', '12.26', '12.27', ]
+			    },
+			    yAxis: {
+		        title: {
+	            text: ''
+		        }
+			    },
+			    legend: {
+			    	enabled: false,
+			    },
+			    plotOptions: {
+			    	series: {
+			    		fillColor: '#F9FCFD',
+				    	lineColor: '#81CD86',
+				    	lineWidth: 1,
+		        	marker: {
+		        		radius: 2,
+		        		fillColor: '#81CD86'
+		        	},
+		        	states: {
+		        		hover: {
+		        			lineWidth: 1,
+		        			lineWidthPlus: 0
+		        		},
+		        		marker: {
+		        			radius: 3
+		        		}
+		        	}
+			    	}
+			    },
+			    credits: {
+					  enabled: false
+					},
+        	series: [{
+		        name: 'views',
+		        data: [0, 0, 10 ,12, 23, 4, 89],
+			    }]
+        },
 			}
 		},
 		methods: {
@@ -363,13 +444,38 @@
 		background: #f4f5f9;
 		border-bottom: 1px solid #e1e1e1;
 	}
+	.indicator .ind-header.single,
 	.indicator .ind-header .el-col{
-		padding: 6px 16px;
+		padding: 8px 16px;
 	}
 	.indicator .ind-header .el-col:last-child{
 		text-align: right;
-		border-left: 1px solid #cecece;
 	}
+	.indicator .ind-header .el-button{
+		padding: 0;
+		height: 100%;
+		color: #666;
+	}
+	.indicator .ind-header .el-button.selected{
+		color: #66b1ff;
+	}
+	.indicator .el-radio-button__inner{
+		padding: 0 14px;
+		display: inline-block;
+		height: 100%;
+		background: none;
+		border: none;
+	}
+	.indicator .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+		background: none;
+		color: #409EFF;
+		border-left: none;
+		-webkit-box-shadow: none;
+	}
+	.indicator .el-radio-button:first-child .el-radio-button__inner{
+		border-left: none;
+	}
+	
 	.indicator .ind-content{
 		padding: 20px;
 		text-align: center;
@@ -384,5 +490,12 @@
 	.indicator .ind-content .el-col span{
 		color: #44b549;
 		font-size: 20px;
+	}
+	.indicator .el-select .el-input__inner{
+		height: none;
+		border: none;
+		background: none;
+		width: 110px;
+		font-family: '\5FAE\8F6F\96C5\9ED1','Avenir', Helvetica, Arial, sans-serif;
 	}
 </style>
