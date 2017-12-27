@@ -2,6 +2,65 @@
 	<el-row class="subcontent">
 		<el-tabs v-model="activeName" @tab-click="handleClickTab">
 
+			<el-tab-pane label="店铺首页" name="shopManage">
+		 		<!--S banner  -->
+		 		<el-row class="banner">
+		 			<el-col	:span="8">
+		 				<p><i class="el-icon-sold-out"></i>{{waitToDelivery}}</p>
+		 				<span>待发货订单</span>
+		 			</el-col>
+		 			<el-col	:span="8">
+		 				<p><i class="el-icon-time"></i>{{waitToReceive}}</p>
+		 				<span>待签收订单</span>
+		 			</el-col>
+		 			<el-col	:span="8">
+		 				<p><i class="el-icon-circle-check-outline"></i>{{finishedOrder}}</p>
+		 				<span>已完成订单</span>
+		 			</el-col>
+		 		</el-row>
+		 		<!-- E banner -->
+		 		<!-- S indicator -->
+		 		<el-row class="indicator">
+		 			<el-col class="ind-header">昨日关键指标</el-col>
+		 			<el-col class="ind-content" >
+		 				<el-col :span="4">
+		 					<p>订单数</p>
+		 					<span>0</span>
+		 				</el-col>
+		 				<el-col :span="4">
+		 					<p>成交商品数</p>
+		 					<span>0</span>
+		 				</el-col>
+		 				<el-col :span="4">
+		 					<p>成交金额</p>
+		 					<span>0</span>
+		 				</el-col>
+		 				<el-col :span="4">
+		 					<p>店铺浏览量</p>
+		 					<span>0</span>
+		 				</el-col>
+		 				<el-col :span="4">
+		 					<p>货架浏览量</p>
+		 					<span>0</span>
+		 				</el-col>
+		 				<el-col :span="4">
+		 					<p>商品浏览量</p>
+		 					<span>0</span>
+		 				</el-col>
+		 			</el-col>
+		 		</el-row>
+		 		<el-row class="indicator">
+		 			<el-col class="ind-header">
+		 				<el-col :span="6">关键指标趋势</el-col>
+		 				<el-col :span="18">
+		 					<el-col></el-col>
+		 				</el-col>
+		 			</el-col>
+		 			<el-col class="ind-content"></el-col>
+		 		</el-row>
+		 		<!-- E indicator -->
+		 	</el-tab-pane>
+
 			<el-tab-pane label="商品管理" name="prodManage">
 	    	<!-- S topbar -->
 				<el-row class="topbar">
@@ -46,10 +105,6 @@
 				</el-table>
 				<!-- E table -->
 	    </el-tab-pane>
-
-		 	<el-tab-pane label="店铺管理" name="shopManage">
-		 		<!--  -->
-		 	</el-tab-pane>
 
 	    <el-tab-pane label="订单管理" name="orderManage">
 	    	<!-- S topbar -->
@@ -107,7 +162,7 @@
 		        prop="state"
 		        label="交易状态"
 		        :filters="[{text:'待付款', value:'待付款'}, {text:'待发货', value:'待发货'}, {text:'待收货', value:'待收货'}, {text:'已完成', value:'已完成'}]"
-		        :filter-method="filterTag"
+		        :filter-method="filterState"
 		        filter-placement="bottom-end">
 		        <template slot-scope="scope">
 			        {{scope.row.state}}
@@ -135,7 +190,7 @@
 	export default {
 		data() {
 			return {
-				activeName: 'prodManage',
+				activeName: 'shopManage',
 				// 商品管理
 				searchProuct: '',
 				uploadDialog: false,
@@ -203,7 +258,10 @@
         	user_name: '千山慕雪',
         	state: '待发货',
         	time: '2017-12-27 10:01:25'
-        },]
+        }],
+        waitToDelivery: 6,
+        waitToReceive: 12,
+        finishedOrder: 564
 			}
 		},
 		methods: {
@@ -232,11 +290,14 @@
       detailOrder(index, row){
       	//
       },
+      filterState(state){
+      	//
+      },
       comfirmOrder(index, row){
-      	console.log(index, row.no)
+      	console.log(index, row.no);
       },
       closeOrder(index, row){
-      	console.log(index, row.no)
+      	console.log(index, row.no);
       },
     }
 	}
@@ -271,5 +332,57 @@
 	}
 	.orderTable{
 		margin-top: 16px;
+	}
+	.banner{
+		color: #fff;
+		padding: 16px;
+		background: #409EFF;
+		margin-bottom: 20px;
+	}
+	.banner .el-col{
+		padding: 16px;
+		text-align: center;
+	}
+	.banner .el-col p{
+		font-size: 24px;
+	}
+	.banner .el-col p i{
+		margin-right: 10px;
+	}
+	.banner .el-col:not(:last-child){
+		border-right: 1px solid #cecece;
+	}
+
+	/*indicator*/
+	.indicator{
+		font-size: 14px;
+		margin-bottom: 20px;
+		border: 1px solid #e1e1e1;
+	}
+	.indicator .ind-header{
+		background: #f4f5f9;
+		border-bottom: 1px solid #e1e1e1;
+	}
+	.indicator .ind-header .el-col{
+		padding: 6px 16px;
+	}
+	.indicator .ind-header .el-col:last-child{
+		text-align: right;
+		border-left: 1px solid #cecece;
+	}
+	.indicator .ind-content{
+		padding: 20px;
+		text-align: center;
+	}
+	.indicator .ind-content .el-col:not(:last-child){
+		border-right: 1px solid #cecece;
+	}
+	.indicator .ind-content .el-col p{
+		color: #777;
+		margin-bottom: 12px;
+	}
+	.indicator .ind-content .el-col span{
+		color: #44b549;
+		font-size: 20px;
 	}
 </style>
