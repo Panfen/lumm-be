@@ -58,27 +58,69 @@
 						<el-input placeholder="订单编号" prefix-icon="el-icon-search" v-model="searchOrder" :change="handleSearchOrder"></el-input>
 					</el-col>
 					<el-col :span="18" class="">
-						<el-radio-group v-model="radio3">
-				      <el-radio-button label="全部订单"></el-radio-button>
+						<el-radio-group v-model="orderTypeChoose">
+				      <el-radio-button label="全部"></el-radio-button>
 				      <el-radio-button label="代发货"></el-radio-button>
 				      <el-radio-button label="已发货"></el-radio-button>
 				      <el-radio-button label="维权中"></el-radio-button>
 				    </el-radio-group>
-				    <el-radio-group v-model="radio3">
+				    <el-radio-group v-model="orderTimeChoose">
+				    	<el-radio-button label="全部"></el-radio-button>
 				      <el-radio-button label="近7日"></el-radio-button>
 				      <el-radio-button label="近15日"></el-radio-button>
 				      <el-radio-button label="近30日"></el-radio-button>
-				      <el-date-picker
-					      v-model="value6"
-					      type="daterange"
-					      range-separator="至"
-					      start-placeholder="开始日期"
-					      end-placeholder="结束日期">
-					    </el-date-picker>
 				    </el-radio-group>
 					</el-col>
 				</el-row>
-
+				<el-table :data="orderListData" ref="multipleTable" class="orderTable" @selection-change="handleOrderSelectionChange">
+					<el-table-column
+			      type="selection"
+			      width="55">
+		    	</el-table-column>
+		      <el-table-column
+		        prop="no"
+		        label="订单编号"
+		        width="120">
+		      </el-table-column>
+		      <el-table-column
+		        prop="pro_name"
+		        label="商品名称">
+		      </el-table-column>
+		      <el-table-column
+		        prop="pro_num"
+		        label="数量">
+		      </el-table-column>
+		      <el-table-column
+		        prop="pro_price"
+		        label="总价格">
+		      </el-table-column>
+		      <el-table-column
+		        prop="user_name"
+		        label="客户昵称">
+		      </el-table-column>
+		      <el-table-column
+		        prop="time"
+		        label="下单时间"
+		        width="180">
+		      </el-table-column>
+		      <el-table-column
+		        prop="state"
+		        label="交易状态"
+		        :filters="[{text:'待付款', value:'待付款'}, {text:'待发货', value:'待发货'}, {text:'待收货', value:'待收货'}, {text:'已完成', value:'已完成'}]"
+		        :filter-method="filterTag"
+		        filter-placement="bottom-end">
+		        <template slot-scope="scope">
+			        {{scope.row.state}}
+			      </template>
+		      </el-table-column>
+		      <el-table-column label="操作" width="180">
+		      	<template slot-scope="scope">
+		      		<el-button type="text" @click="detailOrder(scope.$index, scope.row)">详情</el-button>
+		      		<el-button type="text" @click="comfirmOrder(scope.$index, scope.row)">发货</el-button>
+		      		<el-button type="text" @click="closeOrder(scope.$index, scope.row)">关闭</el-button>
+		      	</template>
+		      </el-table-column>
+		    </el-table>
 				<!-- E topbar -->
 	    </el-tab-pane>
 
@@ -150,7 +192,18 @@
           desc: ''
         },
         formLabelWidth: '120px',
-        searchOrder: ''
+        searchOrder: '',
+        orderTypeChoose: '全部',
+        orderTimeChoose: '全部',
+        orderListData: [{
+        	no: '2017122701', 
+        	pro_name: '黑人牙膏',
+        	pro_num: 2,
+        	pro_price: 78.6,
+        	user_name: '千山慕雪',
+        	state: '待发货',
+        	time: '2017-12-27 10:01:25'
+        },]
 			}
 		},
 		methods: {
@@ -172,7 +225,19 @@
 
       handleSearchOrder(){
       	//
-      }
+      },
+      handleOrderSelectionChange(){
+      	//
+      },
+      detailOrder(index, row){
+      	//
+      },
+      comfirmOrder(index, row){
+      	console.log(index, row.no)
+      },
+      closeOrder(index, row){
+      	console.log(index, row.no)
+      },
     }
 	}
 </script>
@@ -203,5 +268,8 @@
 	}
 	.upload-product-btn{
 		float: right;
+	}
+	.orderTable{
+		margin-top: 16px;
 	}
 </style>
