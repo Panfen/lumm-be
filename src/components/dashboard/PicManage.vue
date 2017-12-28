@@ -10,8 +10,10 @@
 				<span class="pic-amount">共 125 张</span>
 			</el-col>
 			<el-col :span="6">
-				<el-button type="success" id="upload-pic">上传图片</el-button>
-				<el-button type="primary" id="manage-pic" @click="batchManageAct">{{batchManageTitle}}</el-button>
+				<el-button type="success" id="upload-pic" @click="uploadPicDialogVisible=true">
+				上传图片</el-button>
+				<el-button type="primary" id="manage-pic" @click="batchManageAct">
+				{{batchManageTitle}}</el-button>
 			</el-col>
 		</el-row>
 		<!-- E topbar -->
@@ -30,16 +32,34 @@
 		</el-row>
 
 		<!-- 弹出层 -->
-		<el-dialog title="图片查看" :visible.sync="dialogVisible" v-bind:showClose="false">
+		<el-dialog title="图片查看" class="view-dialog" :visible.sync="viewPicDialogVisible" v-bind:showClose="false">
 			<p>仙女布偶</p>
 		  <img v-bind:src="currentUrl">
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible=false">取 消</el-button>
+		    <el-button @click="viewPicDialogVisible=false">取 消</el-button>
 		    <el-button type="danger" @click="delePicAct">删 除</el-button>
 		  </span>
 		  <i class="el-icon-arrow-left prev" @click="prevPicAct"></i>
 			<i class="el-icon-arrow-right next" @click="nextPicAct"></i>
 		</el-dialog>
+
+		<el-dialog title="上传图片" :visible.sync="uploadPicDialogVisible" v-bind:showClose="false" width="40%">
+		  <el-upload
+			  class="pic-uploader"
+			  action=""
+			  :file-list="fileList"
+			  list-type="picture">
+			  <el-button size="small" type="primary">点击上传</el-button>
+			  <div slot="tip" class="el-upload__tip">只能上传jpg/jpeg/png文件，且不超过500KB</div>
+			</el-upload>
+		  <span slot="footer" class="dialog-footer">
+		    <el-button @click="uploadPicDialogVisible=false">取 消</el-button>
+		    <el-button type="primary" @click="uploadPicDialogVisible=false">确 定</el-button>
+		  </span>
+		</el-dialog>
+
+		
+
 	</el-row>
 </template>
 
@@ -47,7 +67,8 @@
 	export default {
 		data() {
 			return {
-				dialogVisible: false,
+				viewPicDialogVisible: false,
+				uploadPicDialogVisible: false,
 				picname: '',
 				currentIndex: 0,
 				currentUrl: '',
@@ -69,7 +90,9 @@
 									'http://p0.so.qhimgs1.com/bdr/_240_/t01e33a5b3f61ec98e4.jpg',
 									'http://p0.so.qhimgs1.com/bdr/_240_/t0136b18f5b94254eac.jpg',
 									'http://p1.so.qhimgs1.com/bdr/_240_/t0161daa340ff02dd81.jpg',
-									'http://p2.so.qhimgs1.com/bdr/_240_/t019d0aeac9b7fc1892.jpg'],
+									'http://p2.so.qhimgs1.com/bdr/_240_/t019d0aeac9b7fc1892.jpg'
+				],
+				fileList: [{name: 'food.jpeg', url: 'http://p3.so.qhmsg.com/bdr/_240_/t01b3f05f12e191b268.jpg'}]
 			}
 		},
 		methods: {
@@ -79,7 +102,7 @@
       viewPicAct(index){
       	this.currentIndex = index;
       	this.currentUrl = this.urlList[index];
-      	this.dialogVisible = true;
+      	this.viewPicDialogVisible = true;
       },
       delePicAct(){
       	//
@@ -142,14 +165,14 @@
 	.piclist ul li.pic-wrap .pic-checkbox .el-checkbox__label{
 		display: none;
 	}
-	.el-dialog__body{
+	.view-dialog .el-dialog__body{
 		position: relative;
 		text-align: center;
 	}
-	.el-dialog__body p{
+	.view-dialog .el-dialog__body p{
 		margin-bottom: 6px;
 	}
-	.el-dialog__body i{
+	.view-dialog .el-dialog__body i{
 		width: 60px;
 		height: 100%;
 		top:0;
@@ -160,13 +183,13 @@
 		align-items: center;
 		cursor: pointer;
 	}
-	.el-dialog__body i:hover{
+	.view-dialog .el-dialog__body i:hover{
 		transform: scale(1.2);
 	}
-	.el-dialog__body i.prev{
+	.view-dialog .el-dialog__body i.prev{
 		left: 10px;
 	}
-	.el-dialog__body i.next{
+	.view-dialog .el-dialog__body i.next{
 		right: 10px;
 	}
 </style>
