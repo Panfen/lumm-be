@@ -12,6 +12,9 @@
   "dependencies": {
     "element-ui": "^2.0.7",
     "highcharts": "^5.0.14",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
     "mavon-editor": "^2.4.12",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
