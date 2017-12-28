@@ -1,9 +1,13 @@
 const Koa = require('koa');
 const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
+const multer = require('koa-multer');
 const app = new Koa();
 
+// 解析multipart/form-data类型
+// app.use(multer);
 
+// 解析Josn,form,text类型
 app.use(bodyParser({
 	onerror: function (err, ctx) {
     ctx.throw('body parse error', 422);
@@ -12,7 +16,7 @@ app.use(bodyParser({
 
 router.post('/uploadPic', async(ctx, next) => {
 	console.log(ctx.request.body)
-	ctx.response.body = {
+	ctx.body = {
     code:'0',
     description: 'ok',
     result: ctx.request.body
