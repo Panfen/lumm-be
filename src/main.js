@@ -6,10 +6,12 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueHighcharts from 'vue-highcharts'
+import Axios from 'axios'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.use(VueHighcharts);
+Vue.prototype.$http = Axios;   // 使用：this.$http.get();
 
 /* eslint-disable no-new */
 new Vue({

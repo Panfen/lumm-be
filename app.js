@@ -3,6 +3,7 @@ const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 const multer = require('koa-multer');
 const app = new Koa();
+const api = require('./server/routes/api.js');
 
 // 解析multipart/form-data类型
 // app.use(multer);
@@ -22,6 +23,8 @@ router.post('/uploadPic', async(ctx, next) => {
     result: ctx.request.body
   }
 });
+
+router.use('/api', api.routes());
 
 app.use(router.routes());
 
