@@ -89,7 +89,7 @@
         this.multipleSelection = val;
       },
       viewActicle(){
-      	//
+      	this.$router.push('/viewContent');
       },
       deleActicle(){
       	//

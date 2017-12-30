@@ -23,7 +23,7 @@
 		      	<template slot="title"><i class="el-icon-setting"></i>系统管理</template>
 		      	<el-menu-item index="2-1">用户管理</el-menu-item>
 	          <el-menu-item index="2-2">文章管理</el-menu-item>
-	          <el-menu-item index="2-3">帖子管理</el-menu-item>
+	          <el-menu-item index="2-3">话题管理</el-menu-item>
 	          <el-menu-item index="2-4">店铺管理</el-menu-item>
 	          <el-menu-item index="2-5">图片管理</el-menu-item>
 		      </el-submenu>

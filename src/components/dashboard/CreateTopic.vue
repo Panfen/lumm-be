@@ -2,8 +2,8 @@
 	<el-row class="subcontent">
 		<el-row class="topbar">
 			<el-col :span="18">
-				<el-input class="title-input" v-model="title" placeholder="文章标题"></el-input>
-				<el-select v-model="type" placeholder="请选择">
+				<el-input class="title-input" v-model="title" placeholder="话题名称"></el-input>
+				<el-select v-model="type" placeholder="类型选择">
 			    <el-option
 			      v-for="item in options"
 			      :key="item.value"
@@ -13,7 +13,7 @@
 			  </el-select>
 			</el-col>
 			<el-col :span="6">
-				<el-button type="success" @click="backArticleList" icon="el-icon-caret-left">返回列表</el-button>
+				<el-button type="success" @click="backTopicList" icon="el-icon-caret-left">返回列表</el-button>
 			</el-col>
 		</el-row>
 		<el-row>
@@ -27,17 +27,25 @@
 </template>
 
 <script>
-	import Lueditor from '../tools/Lueditor'
 	export default{
 		data(){
 			return {
 				title: '',
 				options: [{
 					value: 'option1',
-					label: '原创'
+					label: '找认领'
 				},{
 					value: 'option2',
-					label: '转载'
+					label: '找卖家'
+				},{
+					value: 'option3',
+					label: '找猫猫'
+				},{
+					value: 'option4',
+					label: '讨经验'
+				},{
+					value: 'option5',
+					label: '爱分享'
 				}],
 				type: '',
 				pessage: '',
@@ -85,8 +93,8 @@
 			publicArticle(){
 				//
 			},
-			backArticleList(){
-				this.$router.push('/article');
+			backTopicList(){
+				this.$router.push('/topic');
 			}
 		}
 	}

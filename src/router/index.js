@@ -10,6 +10,8 @@ import TopicManage from '@/components/dashboard/TopicManage'
 import PicManage from '@/components/dashboard/PicManage'
 import CreateArticle from '@/components/dashboard/CreateArticle'
 import UploadProduct from '@/components/dashboard/UploadProduct'
+import CreateTopic from '@/components/dashboard/CreateTopic'
+import ViewContent from '@/components/dashboard/ViewContent'
 
 import MavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -51,6 +53,12 @@ export default new Router({
         },{
           path: '/uploadProduct',
           component: UploadProduct
+        },{
+          path: '/createTopic',
+          component: CreateTopic
+        },{
+          path: '/viewContent',
+          component: ViewContent
         }
     	]
     },{

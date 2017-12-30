@@ -89,7 +89,7 @@
         this.multipleSelection = val;
       },
       viewTopic(){
-      	//
+      	this.$router.push('/viewContent');
       },
       deleTopic(){
       	//
@@ -101,7 +101,7 @@
       	//
       },
       createTopic(){
-      	//
+      	this.$router.push('/createTopic');
       }
 		}
 	}
