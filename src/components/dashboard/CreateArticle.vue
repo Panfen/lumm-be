@@ -17,6 +17,7 @@
 			</el-col>
 		</el-row>
 		<el-row>
+			<!-- ishljs:false 设置不需要代码高亮 -->
 			<mavon-editor v-model="pessage" :ishljs="false" :toolbars="toolbars"/>
 		</el-row>
 		<el-row class="control" type="flex" justify="end">
