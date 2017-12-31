@@ -36,9 +36,9 @@
 	        </el-submenu>
 	        <el-submenu index="4">
 		        <template slot="title"><i class="el-icon-menu"></i>系统功能</template>
-	          <el-menu-item index="4-1">更换主题</el-menu-item>
+	          <el-menu-item index="4-1">个人信息</el-menu-item>
 	          <el-menu-item index="4-2">更换主题</el-menu-item>
-	          <el-menu-item index="4-3">更换主题</el-menu-item>
+	          <el-menu-item index="4-3">推送设置</el-menu-item>
 		      </el-submenu>
 		    </el-menu>
 			</el-col>

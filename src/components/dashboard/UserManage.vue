@@ -24,8 +24,8 @@
 				<h2>全部粉丝</h2>
 				<p class="control">
 					<el-checkbox v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-					<el-button :plain="true" :disabled="reGroupBtn" size="small" >重新分组</el-button>
-					<el-button :plain="true" :disabled="blockedBtn" size="small">加入黑名单</el-button>
+					<el-button :plain="true" :disabled="btnAvaliable" size="small" >重新分组</el-button>
+					<el-button :plain="true" :disabled="btnAvaliable" size="small">加入黑名单</el-button>
 				</p>
 				<el-checkbox-group class="users-checkbox-group" v-model="checkedUsers" @change="handleCheckedUsersChange">
 					<ul class="userlist">
@@ -54,12 +54,11 @@
 			return {
 				username: '',
 				checkboxName: '全选',
-				reGroupBtn: true,
-				blockedBtn: true,
+				btnAvaliable: true,
 				selectItem: false,
 				currentMenu: 0,
 				checkAll: false,
-				checkedUsers: ['2017121201'],
+				checkedUsers: [],
 				users: [
 					{
 						wechatId: '2017121201', 
@@ -100,10 +99,12 @@
 			},
 			handleCheckedUsersChange(value){
 				var checkedCount = value.length;
+				this.btnAvaliable = checkedCount > 0 ? false : true;
         this.checkAll = checkedCount === this.users.length;
 			},
 			handleCheckAllChange(val){
 				this.checkedUsers = val ? this.getWechatIds() : [];
+				this.btnAvaliable = this.checkedUsers.length > 0 ? false : true;
 			},
 			selectMenu(index){
 				this.currentMenu = index;
